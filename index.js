@@ -3,6 +3,7 @@ var counter = 0;
 var gameOver = false;
 
 function resetGame() {
+    $('#title').show();
     $('#messageDiv').hide();
     userLetter = "X";
     counter = 0;
@@ -34,6 +35,7 @@ function changeUser() {
 function completeRow(x, y, z) {
     if ((x.length == 1) && (x == y) && (x == z)) {
         gameOver = true;
+        $('#title').hide();
         $('#messageDiv').show();
         $('#theMessage').html(x + " wins!");
     }
@@ -66,6 +68,7 @@ function checkForWin() {
 
     if ((counter == 9) && (gameOver == false)) {
         gameOver = true;
+        $('#title').hide();
         $('#messageDiv').show();
         $('#theMessage').html("Cat's Game!");
     }
@@ -87,6 +90,7 @@ $('.box').click(function() {
         }
     }
     else {
+        $('#title').hide();
         $('#messageDiv').show();
         $('#theMessage').html("Game Over. Click the button to play again.");
     }
