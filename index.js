@@ -5,18 +5,15 @@ var gameOver = false;
 function resetGame() {
     $('#title').show();
     $('#messageDiv').hide();
+
+    for (item = 1; item <= 9; item++) {
+        var theBoxId = "#box" + item;
+        $(theBoxId).html("");
+        $(theBoxId).css("color", "#fff");
+    }
     userLetter = "X";
     counter = 0;
     gameOver = false;
-    $("#box1").html("");
-    $('#box2').html("");
-    $('#box3').html("");
-    $('#box4').html("");
-    $('#box5').html("");
-    $('#box6').html("");
-    $('#box7').html("");
-    $('#box8').html("");
-    $('#box9').html("");
 }
 
 function changeUser() {
@@ -32,11 +29,14 @@ function changeUser() {
     }
 };
 
-function completeRow(x, y, z) {
+function completeRow(x, y, z, k, l, m) { 
     if ((x.length == 1) && (x == y) && (x == z)) {
         gameOver = true;
         $('#title').hide();
         $('#messageDiv').show();
+        $(k).css("color", "#ff880d");
+        $(l).css("color", "#ff880d");
+        $(m).css("color", "#ff880d");
         $('#theMessage').html(x + " wins!");
     }
     else {
@@ -45,25 +45,51 @@ function completeRow(x, y, z) {
 };
 
 function checkForWin() {
-    var a = $("#box1").html();
-    var b = $('#box2').html();
-    var c = $('#box3').html();
-    var d = $('#box4').html();
-    var e = $('#box5').html();
-    var f = $('#box6').html();
-    var g = $('#box7').html();
-    var h = $('#box8').html();
-    var i = $('#box9').html();
-
+    var a = {
+        letter: $("#box1").html(),
+        id: "#box1"
+    }
+    var b = {
+        letter: $('#box2').html(),
+        id: "#box2"
+    }
+    var c = {
+        letter: $('#box3').html(),
+        id: "#box3"
+    }
+    var d = {
+        letter: $('#box4').html(),
+        id: "#box4"
+    }
+    var e = {
+        letter: $('#box5').html(),
+        id: "#box5"
+    }
+    var f = {
+        letter: $('#box6').html(),
+        id: "#box6"
+    }
+    var g = {
+        letter: $('#box7').html(),
+        id: "#box7"
+    }
+    var h = {
+        letter: $('#box8').html(),
+        id: "#box8"
+    }
+    var i = {
+        letter: $('#box9').html(),
+        id: "#box9"
+    }
     if (counter > 4) {
-        completeRow(a, b, c);
-        completeRow(d, e, f);
-        completeRow(g, h, i);
-        completeRow(a, d, g);
-        completeRow(b, e, h);
-        completeRow(c, f, i);
-        completeRow(a, e, i);
-        completeRow(c, e, g);
+        completeRow(a.letter, b.letter, c.letter, a.id, b.id, c.id);
+        completeRow(d.letter, e.letter, f.letter, d.id, e.id, f.id);
+        completeRow(g.letter, h.letter, i.letter, g.id, h.id, i.id);   
+        completeRow(a.letter, d.letter, g.letter, a.id, d.id, g.id);
+        completeRow(b.letter, e.letter, h.letter, b.id, e.id, h.id);
+        completeRow(c.letter, f.letter, i.letter, c.id, f.id, i.id);
+        completeRow(a.letter, e.letter, i.letter, a.id, e.id, i.id);
+        completeRow(c.letter, e.letter, g.letter, c.id, e.id, g.id);
     }
 
     if ((counter == 9) && (gameOver == false)) {
@@ -92,6 +118,6 @@ $('.box').click(function() {
     else {
         $('#title').hide();
         $('#messageDiv').show();
-        $('#theMessage').html("Game Over. Click the button to play again.");
+        alert('Game Over. Click the "Play Again" button to start a new game.');   
     }
 })
