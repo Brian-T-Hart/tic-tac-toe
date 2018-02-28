@@ -34,6 +34,7 @@ function completeRow(x, y, z, k, l, m) {
         gameOver = true;
         $('#title').hide();
         $('#messageDiv').show();
+        play2();
         $(k).css("color", "#ff880d");
         $(l).css("color", "#ff880d");
         $(m).css("color", "#ff880d");
@@ -100,10 +101,21 @@ function checkForWin() {
     }
 };
 
+function play() {
+    var audio = document.getElementById("audio");
+    audio.play();
+}
+
+function play2() {
+    var audio = document.getElementById("audio2");
+    audio.play()
+}
+
 $('.box').click(function() {
     if (gameOver == false) {
         let thisSpace = $(this).html();
         if (thisSpace == false) {
+            play();
             $(this).html(userLetter);
             counter++;
             setTimeout(() => {
