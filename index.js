@@ -102,13 +102,13 @@ function checkForWin() {
 
 $('.box').click(function() {
     if (gameOver == false) {
-        counter++;
         let thisSpace = $(this).html();
         if (thisSpace == false) {
             $(this).html(userLetter);
+            counter++;
             setTimeout(() => {
                 checkForWin();
-            }, 1000);
+            }, 800);
             changeUser();
         }
         else {
@@ -116,8 +116,6 @@ $('.box').click(function() {
         }
     }
     else {
-        $('#title').hide();
-        $('#messageDiv').show();
         alert('Game Over. Click the "Play Again" button to start a new game.');   
     }
 })
